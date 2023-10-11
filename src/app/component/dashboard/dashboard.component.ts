@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
@@ -28,9 +29,14 @@ export class DashboardComponent implements OnInit {
   dob : string = '';
   role : string = ''
 
-  constructor(private auth : AuthService,private data : DataService){}
+  constructor(private auth : AuthService,private data : DataService,private router : Router){}
 
   ngOnInit(): void{
+    if(localStorage.getItem('token')==null){
+      this.router.navigate(['/login']);
+    }else{
+      this.router.navigate([localStorage.getItem('role')]);
+    }
     this.getAllUser();
   }
 
@@ -39,7 +45,6 @@ export class DashboardComponent implements OnInit {
        this.userList = res.map((e:any) =>{
         const data = e.payload.doc.data();
         data.id = e.payload.doc.id;
-        console.log(this.userList)
         return data;
        })
     }, err => {

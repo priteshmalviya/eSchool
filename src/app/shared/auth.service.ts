@@ -32,17 +32,18 @@ export class AuthService {
 
         
         if(data.email == email){
+          localStorage.setItem('userId',data.id)
           if(data.role == 'admin'){
+            localStorage.setItem('role', 'dashboard')
             this.router.navigate(['dashboard']);
-            console.log(data)
             return
           }
           if(data.role == 'teacher'){
+            localStorage.setItem('role', 'teacher')
             this.router.navigate(['teacher']);
-            console.log(data)
             return
           }
-          console.log(data)
+          localStorage.setItem('role', 'student')
           this.router.navigate(['student']);
           return
         }

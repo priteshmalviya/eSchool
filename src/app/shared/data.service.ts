@@ -44,10 +44,12 @@ export class DataService {
   logout(){
     this.fireauth.signOut().then(()=>{
       localStorage.removeItem('token')
+      localStorage.removeItem('role')
+      localStorage.removeItem('userId')
       this.router.navigate(['/login']);
     }, err=>{
         alert(err.message);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate([localStorage.getItem('role')]);
     });
   }
 }

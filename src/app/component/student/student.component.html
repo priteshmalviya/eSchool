@@ -1,1 +1,34 @@
-<p>student works!</p>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <div class="card border-0 shadow p-3">
+                <div class="form-floating mb-3 tetx-center">
+                    <h5 class="text-center text-warning">Student Section</h5>
+                </div>
+                
+                <button type="button" class="btn btn-outline-success mt-2">See Attendance</button>
+                
+                <button type="button" class="btn btn-outline-success mt-2">See Assignment</button>
+                
+                <button type="button" class="btn btn-outline-success mt-2">See Result</button>
+
+                <button type="button" class="btn btn-outline-danger mt-2" (click)="logout()">LogOut</button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-5">
+            <div class="card p-3 shadow">
+                <div class="card-body">
+                    <h2 class="text-danger text-center text-xl">Attendance</h2>
+                </div>
+                <div class="card-body">
+                    <h2 class="text-danger text-center text-xl">Assignment</h2>
+                </div>
+                <div class="card-body">
+                    <h2 class="text-danger text-center text-xl">Result</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
