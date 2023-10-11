@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "eschool-abf76": {
+      "hosting": {
+        "myApp": [
+          "eschool-abf76"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "eschool-abf76"
+  }
+}
