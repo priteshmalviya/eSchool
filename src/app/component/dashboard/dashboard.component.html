@@ -15,6 +15,10 @@
                         <label for="lastName">Last name</label>
                     </div>
                     <div class="form-floating mb-3">
+                        <input type="date" class="form-control" name="dob" [(ngModel)]="dob">
+                        <label for="dob">Date Of Birth</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
                         <label for="email">Email address</label>
                     </div>
@@ -22,7 +26,12 @@
                         <input type="text" class="form-control" id="mobile" name="mobile" [(ngModel)]="mobile">
                         <label for="mobile">Mobile</label>
                     </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="role" [(ngModel)]="role">
+                        <label for="role">Role</label>
+                    </div>
                     <button type="button" class="btn btn-outline-success" (click)="addUser()">Add User</button>
+                    <button type="button" class="btn btn-outline-danger mt-2" (click)="logout()">LogOut</button>
             </div>
         </div>
         <div class="col-md-8 mt-2">
@@ -34,6 +43,8 @@
                           <tr>
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
+                            <th scope="col">Dob</th>
+                            <th scope="col">Role</th>
                             <th scope="col">Email</th>
                             <th scope="col">Mobile</th>
                             <th scope="col">Action</th>
@@ -43,10 +54,12 @@
                           <tr *ngFor="let user of userList">
                             <td>{{user.first_name}}</td>
                             <td>{{user.last_name}}</td>
+                            <td>{{user.dob}}</td>
+                            <td>{{user.role}}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.mobile}}</td>
                             <td>
-                                <button class="btn btn-outline-danger">Delete</button>
+                                <button class="btn btn-outline-danger" (click)="deleteUser(user)">Delete</button>
                             </td>
                           </tr>
                         </tbody>

@@ -18,10 +18,11 @@ export class LoginComponent {
       return
     }
 
-    this.auth.login(this.email,this.password);
+    this.auth.login(this.email,this.password)
 
     this.email = '';
     this.password = '';
 
   }
+
 }

@@ -11,9 +11,10 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire/compat';
 import { LoginComponent } from './component/login/login.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
-import { RagisterComponent } from './component/ragister/ragister.component'
 import { FormsModule } from '@angular/forms';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
+import { StudentComponent } from './component/student/student.component';
+import { TeacherComponent } from './component/teacher/teacher.component'; 
  
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
     HeaderComponent,
     LoginComponent,
     DashboardComponent,
-    RagisterComponent,
+    StudentComponent,
+    TeacherComponent,
   ],
   imports: [
     BrowserModule,

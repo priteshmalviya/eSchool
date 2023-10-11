@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
@@ -8,7 +8,7 @@ import { DataService } from 'src/app/shared/data.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   userList :  User[] = [];
   userObj : User = {
@@ -16,13 +16,17 @@ export class DashboardComponent {
     first_name: '',
     last_name: '',
     email: '',
-    mobile: ''
+    mobile: '',
+    dob : '',
+    role : ''
   };
   id : string = '';
   first_name : string = '';
   last_name : string = '';
   email : string = '';
   mobile : string = '';
+  dob : string = '';
+  role : string = ''
 
   constructor(private auth : AuthService,private data : DataService){}
 
@@ -33,8 +37,9 @@ export class DashboardComponent {
   getAllUser(){
     this.data.getAllUsers().subscribe(res=>{
        this.userList = res.map((e:any) =>{
-        const data = e.payload.doc.data;
+        const data = e.payload.doc.data();
         data.id = e.payload.doc.id;
+        console.log(this.userList)
         return data;
        })
     }, err => {
@@ -43,7 +48,7 @@ export class DashboardComponent {
   }
 
   addUser(){
-    if(this.first_name == '' || this.last_name == '' || this.email == '' || this.mobile == ''){
+    if(this.first_name == '' || this.last_name == '' || this.email == '' || this.mobile == '' || this.dob == '' || this.role == ''){
        alert('fill');
        return;
     }
@@ -52,8 +57,10 @@ export class DashboardComponent {
     this.userObj.first_name = this.first_name
     this.userObj.last_name = this.last_name
     this.userObj.mobile = this.mobile
+    this.userObj.dob = this.dob
+    this.userObj.role = this.role
 
-    this.data.addUser(this.userObj)
+    this.data.ragister(this.userObj)
 
     this.resetForm()
   }
@@ -64,10 +71,17 @@ export class DashboardComponent {
     this.last_name = '';
     this.email = '';
     this.mobile = '';
-    
+    this.dob = '';
+    this.role = '';
   }
 
-  updateUser(){
+  deleteUser(user : User){
+    if (window.confirm('Are you sure you want to delete ' + user.first_name + ' ' + user.last_name + ' ?')) {
+      this.data.deleteUser(user);
+    }
+  }
 
+  logout(){
+    this.data.logout();
   }
 }
