@@ -1,0 +1,21 @@
+<nav class="bg-white flex h-full w-full items-center flex-col justify-center">
+
+    <h1 class="font-bold m-2 text-2xl">Ragister</h1>
+
+    <form method="post" class="flex flex-col items-center justify-center w-full">
+        <div class="p-3 m-1 flex flex-col w-full">
+            <label class="m-1">Email Address:</label>
+            <input class="p-2 m-1 bg-slate-100" type="email" [(ngModel)] = 'email'
+            required
+            name="email"/>
+        </div>
+        <div class="p-3 m-1 flex flex-col w-full">
+            <label class="m-1">Password:</label>
+            <input class="p-2 m-1 bg-slate-100" type="password" [(ngModel)] = 'password'
+            required
+            name="pass"/>
+        </div>
+        <button type="button" class="p-3 m-1 bg-slate-800 text-white" (click) = "ragister()">Ragister</button>
+    </form>
+
+</nav>
