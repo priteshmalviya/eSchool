@@ -21,28 +21,63 @@
                 <div class="card-body" *ngIf="showAttendance">
                     <h2 class="text-danger text-center text-xl">Attendance</h2>
                 </div>
+
+
+
                 <div class="card-body" *ngIf="showAssignment">
                     <h2 class="text-danger text-center text-xl">Assignment</h2>
 
                     
                     <div class="form-floating mb-3 mt-3">
-                        <input type="text" class="form-control" id="firstName" name="firstname">
+                        <input type="text" class="form-control" id="firstName" name="firstname" [(ngModel)]="Aname">
                         <label for="firstname">Name Of the Assignment</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="lastName" name="lastName">
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="Asubject">
                         <label for="lastName">Subject Of Assignment</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control" name="dob">
-                        <label for="dob">Submission Date</label>
+                        <input type="date" class="form-control" name="dob" [(ngModel)]="Adate">
+                        <label for="dob" >Submission Date</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" >
-                        <label for="email">Marks</label>
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="Amarks">
+                        <label for="email" >Marks</label>
                     </div>
-                    <button type="button" class="btn btn-outline-success">Add Assignment</button>
+                    <button type="button" class="btn btn-outline-success" (click)="addAssignment()">Add Assignment</button>
                 </div>
+
+                <div class="card-body" *ngIf="showAssignment">
+                    <h2 class="text-danger text-center text-xl">Assignments List</h2>
+
+                    
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Last Date <button type="button"  class="btn px-2 py-0 btn-outline-success" (click)="filterAssignment()"><p *ngIf="sortAssignmentInAscending" class="text-lg">&uarr;</p><p *ngIf="sortAssignmentInDescending" class="text-lg">&#8595;</p></button></th>
+                            <th scope="col">Marks</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let assignment of assignmentList">
+                            <td>{{assignment.name}}</td>
+                            <td>{{assignment.subject}}</td>
+                            <td>{{assignment.date}}</td>
+                            <td>{{assignment.marks}}</td>
+                            <td>
+                                <button class="btn btn-outline-danger" (click)="deleteAssignment(assignment)">Delete</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                </div>
+
+
+
                 <div class="card-body" *ngIf="showStudents">
                     <h2 class="text-danger text-center text-xl">Students List</h2>
 
@@ -50,7 +85,7 @@
                     <table class="table table-hover">
                         <thead>
                           <tr>
-                            <th scope="col">Full Name <button type="button"  class="btn px-2 py-0 btn-outline-success" (click)="filter()"><p *ngIf="sortInAscending" class="text-lg">&uarr;</p><p *ngIf="sortInDescending" class="text-lg">&#8595;</p></button></th>
+                            <th scope="col">Full Name <button type="button"  class="btn px-2 py-0 btn-outline-success" (click)="filterStudents()"><p *ngIf="sortStudentsInAscending" class="text-lg">&uarr;</p><p *ngIf="sortStudentsInDescending" class="text-lg">&#8595;</p></button></th>
                             <th scope="col">Dob</th>
                             <th scope="col">Email</th>
                             <th scope="col">Mobile</th>

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { User } from '../model/user';
 import { Router } from '@angular/router';
+import { Assignment } from '../model/assignment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class DataService {
     return this.afs.collection('/User').snapshotChanges();
   }
 
+  getAllAssignment(){
+    return this.afs.collection('/Assignment').snapshotChanges();
+  }
+
   deleteUser(user : User){
     this.afs.doc('/User/'+user.id).delete();
   }
@@ -37,6 +42,18 @@ export class DataService {
         alert(err.message);
         this.router.navigate(['/dashboard']);
       });
+    }
+
+
+     //addAssignment mathod for adding new Assignment
+    //   only teacher can use this
+    addAssignment(assignment : Assignment){
+      assignment.id = this.afs.createId();
+      return this.afs.collection('/Assignment').add(assignment);
+    }
+
+    deleteAssignment(assignment : Assignment){
+      this.afs.doc('/Assignment/'+assignment.id).delete();
     }
 
     
