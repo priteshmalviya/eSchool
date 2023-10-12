@@ -10,6 +10,8 @@
                 <button type="button" class="btn btn-outline-success mt-2" (click)="attendance()">Update Attendance</button>
                 
                 <button type="button" class="btn btn-outline-success mt-2" (click)="assignment()">Update Assignment</button>
+
+                <button type="button" class="btn btn-outline-success mt-2" (click)="result()">Upadte Result</button>
                 
                 <button type="button" class="btn btn-outline-success mt-2" (click)="students()">See Students</button>
 
@@ -20,6 +22,108 @@
             <div class="card p-3 shadow">
                 <div class="card-body" *ngIf="showAttendance">
                     <h2 class="text-danger text-center text-xl">Attendance</h2>
+
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="firstName" name="firstname" [(ngModel)]="Sname">
+                        <label for="firstname">Name Of Student</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="Semail">
+                        <label for="lastName">Email Of Student</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="month" class="form-control" name="dob" [(ngModel)]="Amonth">
+                        <label for="dob" >Month of Attendance</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="Sattendance">
+                        <label for="email" >Total Attendance</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-success" (click)="addAttendance()">Add Attendance</button>
+                </div>
+            
+
+                
+                <div class="card-body" *ngIf="showAttendance">
+                    <h2 class="text-danger text-center text-xl">Attendance List</h2>
+
+                    
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Month</th>
+                            <th scope="col">Attendance</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let attendance of attendanceList">
+                            <td>{{attendance.name}}</td>
+                            <td>{{attendance.email}}</td>
+                            <td>{{attendance.month}}</td>
+                            <td>{{attendance.attendance}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                </div>
+
+
+                
+                <div class="card-body" *ngIf="showResult">
+                    <h2 class="text-danger text-center text-xl">Result</h2>
+
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="firstName" name="firstname" [(ngModel)]="Rexam">
+                        <label for="firstname">Name Of Exam</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="Remail">
+                        <label for="lastName">Email Of Student</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="Rsubject">
+                        <label for="lastName">Subject</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" name="dob" [(ngModel)]="Robtained">
+                        <label for="dob" >Obtained Marks</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="email" name="email" [(ngModel)]="Rtotal">
+                        <label for="email" >Total Marks</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-success" (click)="addResult()">Add Result</button>
+                </div>
+            
+
+                
+                <div class="card-body" *ngIf="showResult">
+                    <h2 class="text-danger text-center text-xl">Result List</h2>
+
+                    
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name Of Exam</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Email of Student</th>
+                            <th scope="col">Obtained Marks</th>
+                            <th scope="col">Total Marks</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let result of ResultList">
+                            <td>{{result.exam}}</td>
+                            <td>{{result.subject}}</td>
+                            <td>{{result.email}}</td>
+                            <td>{{result.obtained}}</td>
+                            <td>{{result.total}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
                 </div>
 
 

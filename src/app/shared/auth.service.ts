@@ -23,7 +23,7 @@ export class AuthService {
   };
 
   
-  
+  // getting all users
   getAllUser(email : string){
     this.data.getAllUsers().subscribe(res=>{
        this.userList = res.map((e:any) =>{
@@ -59,6 +59,7 @@ export class AuthService {
     login(email : string, pass : string){
       this.fireauth.signInWithEmailAndPassword(email,pass).then(()=>{
         localStorage.setItem('token', 'true')
+        localStorage.setItem('email',email)
         this.getAllUser(email)
         return
       }, err => {

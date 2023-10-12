@@ -11,6 +11,7 @@ import { DataService } from 'src/app/shared/data.service';
 })
 export class DashboardComponent implements OnInit {
 
+// to get and update user deatails
   userList :  User[] = [];
   userObj : User = {
     id: '',
@@ -40,6 +41,7 @@ export class DashboardComponent implements OnInit {
     this.getAllUser();
   }
 
+  // getting all user
   getAllUser(){
     this.data.getAllUsers().subscribe(res=>{
        this.userList = res.map((e:any) =>{
@@ -52,9 +54,10 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  // adding new user
   addUser(){
     if(this.first_name == '' || this.last_name == '' || this.email == '' || this.mobile == '' || this.dob == '' || this.role == ''){
-       alert('fill');
+       alert('all fields are mandatory');
        return;
     }
     
@@ -70,6 +73,7 @@ export class DashboardComponent implements OnInit {
     this.resetForm()
   }
 
+  // clearing the form
   resetForm(){
     this.id = '';
     this.first_name = '';
@@ -80,12 +84,14 @@ export class DashboardComponent implements OnInit {
     this.role = '';
   }
 
+  // deleting the user
   deleteUser(user : User){
     if (window.confirm('Are you sure you want to delete ' + user.first_name + ' ' + user.last_name + ' ?')) {
       this.data.deleteUser(user);
     }
   }
 
+  //logout
   logout(){
     this.data.logout();
   }

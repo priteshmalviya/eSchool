@@ -19,9 +19,11 @@ export class LoginComponent implements OnInit{
     }
   }
 
+  // login the user
+
   login(){
     if(this.email == '' || this.password == ''){
-      alert("fill")
+      alert('all fields are mandatory');
       return
     }
 

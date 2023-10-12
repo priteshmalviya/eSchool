@@ -44,12 +44,56 @@
 
                 </div>
 
+                
                 <div class="card-body" *ngIf="showAttendance">
                     <h2 class="text-danger text-center text-xl">Attendance</h2>
+
+                    
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Month</th>
+                            <th scope="col">Attendance</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let attendance of attendanceList">
+                            <td>{{attendance.name}}</td>
+                            <td>{{attendance.email}}</td>
+                            <td>{{attendance.month}}</td>
+                            <td>{{attendance.attendance}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
                 </div>
 
                 <div class="card-body" *ngIf="showResult">
                     <h2 class="text-danger text-center text-xl">Result</h2>
+
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name Of Exam</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Email of Student</th>
+                            <th scope="col">Obtained Marks</th>
+                            <th scope="col">Total Marks</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let result of ResultList">
+                            <td>{{result.exam}}</td>
+                            <td>{{result.subject}}</td>
+                            <td>{{result.email}}</td>
+                            <td>{{result.obtained}}</td>
+                            <td>{{result.total}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
                 </div>
 
             </div>
