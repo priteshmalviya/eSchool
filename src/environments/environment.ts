@@ -6,5 +6,6 @@ export const environment = {
     apiKey: 'AIzaSyA4H6ox74rXsAXt8WJfXb4kaPK6zUVfiBg',
     authDomain: 'eschool-abf76.firebaseapp.com',
     messagingSenderId: '391936371053',
+    databaseURL: "https://eschool-abf76-default-rtdb.firebaseio.com",
   },
 };
