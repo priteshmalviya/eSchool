@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Assignment } from '../model/assignment';
 import { Attendance } from '../model/attendance';
 import { Result } from '../model/result';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +14,34 @@ import { Result } from '../model/result';
 
 export class DataService {
 
-  constructor(private afs : AngularFirestore,private fireauth : AngularFireAuth,private router : Router) {}
+  constructor(private afs : AngularFirestore,private fireauth : AngularFireAuth,private router : Router,private Rdb : AngularFireDatabase) {}
 
   // for users
   addUser(user : User){
-    user.id = this.afs.createId();
-    return this.afs.collection('/User').add(user);
+    //user.id = this.afs.createId();
+    //return this.afs.collection('/User').add(user); 
+    user.id = user.email.substring(0, user.email.indexOf('.')).toLocaleLowerCase()
+    return this.Rdb.list('Users/').set(user.id,user)
   }
 
   getAllUsers(){
-    return this.afs.collection('/User').snapshotChanges();
+    //const test2 = this.afs.collection('/User').snapshotChanges();
+    //console.log("hello",test,test2)
+    return this.Rdb.list('Users/').snapshotChanges();
+  }
+
+  getUser(id : string){
+    id = id.substring(0, id.indexOf('.')).toLocaleLowerCase()
+    return this.Rdb.list('Users/'+id+'/').valueChanges();
   }
 
   deleteUser(user : User){
-    this.afs.doc('/User/'+user.id).delete();
+    //this.afs.doc('/User/'+user.id).delete();
+    this.Rdb.list('/Users/'+user.id).remove();
+  }
+
+  freezUnFreeze(user : User,f:boolean){
+    this.Rdb.list('/Users/'+user.id).set("/status/",f);
   }
 
   //rajister mathod for rajistering new student and teacher
@@ -91,15 +106,10 @@ export class DataService {
 
 
   logout(){
-    this.fireauth.signOut().then(()=>{
-      localStorage.removeItem('token')
-      localStorage.removeItem('role')
-      localStorage.removeItem('userId')
-      localStorage.removeItem('email')
-      this.router.navigate(['/login'])
-    }, err=>{
-        alert(err.message);
-        this.router.navigate([localStorage.getItem('role')]);
-    });
+    localStorage.removeItem('token')
+    localStorage.removeItem('role')
+    localStorage.removeItem('userId')
+    localStorage.removeItem('email')
+    this.router.navigate(['/login'])
   }
 }

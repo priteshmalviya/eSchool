@@ -12,6 +12,7 @@ import { LoginComponent } from './component/login/login.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { StudentComponent } from './component/student/student.component';
 import { TeacherComponent } from './component/teacher/teacher.component'; 
  
@@ -27,6 +28,7 @@ import { TeacherComponent } from './component/teacher/teacher.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),

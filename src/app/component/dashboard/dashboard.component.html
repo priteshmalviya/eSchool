@@ -59,6 +59,11 @@
                             <td>{{user.email}}</td>
                             <td>{{user.mobile}}</td>
                             <td>
+                                <button  class="btn btn-outline-danger mr-3" *ngIf="user.status" (click)="freezUnFreeze(user,false)">Freez</button>
+
+                                
+                                <button  class="btn btn-outline-success mr-3" *ngIf="!user.status" (click)="freezUnFreeze(user,true)">UnFreez</button>
+
                                 <button class="btn btn-outline-danger" (click)="deleteUser(user)">Delete</button>
                             </td>
                           </tr>

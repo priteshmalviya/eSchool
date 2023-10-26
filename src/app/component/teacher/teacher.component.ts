@@ -40,8 +40,10 @@ export class TeacherComponent {
     last_name: '',
     email: '',
     mobile: '',
-    dob : '',
-    role : ''
+    dob: '',
+    role: '',
+    status: true,
+    password: ''
   };
   id : string = '';
   first_name : string = '';

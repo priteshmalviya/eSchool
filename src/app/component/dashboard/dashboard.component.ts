@@ -19,8 +19,10 @@ export class DashboardComponent implements OnInit {
     last_name: '',
     email: '',
     mobile: '',
-    dob : '',
-    role : ''
+    dob: '',
+    role: '',
+    status: true,
+    password: ''
   };
   id : string = '';
   first_name : string = '';
@@ -28,7 +30,7 @@ export class DashboardComponent implements OnInit {
   email : string = '';
   mobile : string = '';
   dob : string = '';
-  role : string = ''
+  role : string = '';
 
   constructor(private auth : AuthService,private data : DataService,private router : Router){}
 
@@ -45,8 +47,9 @@ export class DashboardComponent implements OnInit {
   getAllUser(){
     this.data.getAllUsers().subscribe(res=>{
        this.userList = res.map((e:any) =>{
-        const data = e.payload.doc.data();
-        data.id = e.payload.doc.id;
+        //console.log("this",e.payload.val())
+        const data = e.payload.val();
+        //data.id = e.payload.doc.id;
         return data;
        })
     }, err => {
@@ -67,8 +70,10 @@ export class DashboardComponent implements OnInit {
     this.userObj.mobile = this.mobile
     this.userObj.dob = this.dob
     this.userObj.role = this.role
+    this.userObj.password = this.dob
+    this.userObj.status = true
 
-    this.data.ragister(this.userObj)
+    this.data.addUser(this.userObj)
 
     this.resetForm()
   }
@@ -88,6 +93,16 @@ export class DashboardComponent implements OnInit {
   deleteUser(user : User){
     if (window.confirm('Are you sure you want to delete ' + user.first_name + ' ' + user.last_name + ' ?')) {
       this.data.deleteUser(user);
+    }
+  }
+
+  freezUnFreeze(user : User, f : boolean){
+    if(f){
+      window.confirm('Are you sure you want to UnFreeze ' + user.first_name + ' ' + user.last_name + ' ?')
+      this.data.freezUnFreeze(user,f)
+    }else{
+      window.confirm('Are you sure you want to Freeze ' + user.first_name + ' ' + user.last_name + ' ?')
+      this.data.freezUnFreeze(user,f)
     }
   }
 

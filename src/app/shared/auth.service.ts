@@ -18,8 +18,10 @@ export class AuthService {
     last_name: '',
     email: '',
     mobile: '',
-    dob : '',
-    role : '',
+    dob: '',
+    role: '',
+    status: true,
+    password: ''
   };
 
   
