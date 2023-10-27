@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Assignment } from 'src/app/model/assignment';
 import { Attendance } from 'src/app/model/attendance';
 import { Result } from 'src/app/model/result';
@@ -20,6 +21,7 @@ export class TeacherComponent {
   showAssignment:Boolean=false
   showStudents:Boolean=false
   showResult:Boolean = false
+  showResetPass:Boolean = false
 
 
   //for soring the assignments
@@ -51,6 +53,12 @@ export class TeacherComponent {
   email : string = '';
   mobile : string = '';
   dob : string = '';
+
+  
+  // for reseting password
+  currPass : string = '';
+  newPass : string = "";
+  confirmPass : string = '';
 
   assignmentList :  Assignment[] = [];
   assignmentObj : Assignment = {
@@ -99,7 +107,7 @@ export class TeacherComponent {
   Rsubject : string = ""
 
 
-  constructor(private auth : AuthService,private data : DataService,private router : Router){}
+  constructor(private auth : AuthService,private data : DataService,private router : Router,private toastr: ToastrService){}
 
   ngOnInit(): void{
     if(localStorage.getItem('token')==null){
@@ -125,7 +133,7 @@ export class TeacherComponent {
         return data;
        })
     }, err => {
-      alert(err.message)
+      this.toastr.error(err.message)
     })
   }
 
@@ -182,7 +190,7 @@ export class TeacherComponent {
 
   addAssignment(){
     if(this.Aname == "" || this.Adate == '' || this.Amarks =='' || this.Asubject ==''){
-       alert('all fields are mandatory');
+      this.toastr.warning('all fields are mandatory');
        return;
     }
 
@@ -219,7 +227,7 @@ export class TeacherComponent {
         return data;
        })
     }, err => {
-      alert(err.message)
+      this.toastr.error(err.message)
     })
   }
 
@@ -232,7 +240,7 @@ export class TeacherComponent {
 // for attendance
   addAttendance(){
     if(this.Sname == "" || this.Amonth == '' || this.Sattendance =='' || this.Semail ==''){
-      alert('all fields are mandatory');
+      this.toastr.warning('all fields are mandatory');
        return;
     }
 
@@ -257,7 +265,7 @@ export class TeacherComponent {
         return data;
        })
     }, err => {
-      alert(err.message)
+      this.toastr.error(err.message)
     })
   }
 
@@ -266,7 +274,7 @@ export class TeacherComponent {
 
   addResult(){
     if(this.Remail == "" || this.Rexam == '' || this.Robtained =='' || this.Rtotal =='' || this.Rtotal == ''){
-      alert('all fields are mandatory');
+      this.toastr.warning('all fields are mandatory');
        return;
     }
 
@@ -293,8 +301,35 @@ export class TeacherComponent {
         return data;
        })
     }, err => {
-      alert(err.message)
+      this.toastr.error(err.message)
     })
   }
 
+  openCloseResetPass(){
+    this.showResetPass = !this.showResetPass
+  }
+
+  resetPass(){
+    if(this.currPass != "" && this.newPass != "" && this.confirmPass != ""){
+      if(this.confirmPass==this.newPass){
+        this.data.resetPass(JSON.stringify(localStorage.getItem('email') || ""),this.currPass,this.newPass)
+        this.showResetPass = false
+        this.currPass = '';
+        this.newPass = '';
+        this.confirmPass = '';
+      }else{
+        this.toastr.error("New Password and Confirm Password Do Not Match")
+        this.currPass = '';
+        this.newPass = '';
+        this.confirmPass = '';
+        return
+      }
+    }else{
+      this.toastr.warning("All fields are mandatory")
+      this.currPass = '';
+      this.newPass = '';
+      this.confirmPass = '';
+      return
+    }
+  }
 }
