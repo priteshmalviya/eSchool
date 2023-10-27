@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
 
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private data: DataService
+    private data: DataService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.email == '' || this.password == '') {
-      alert('all fields are mandatory');
+      this.toastr.warning('all fields are mandatory');
       return;
     }
 
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     this.data.getUser(this.email).subscribe((snapshots) => {
       if (snapshots.length == 0 || snapshots[6]==null) {
-        alert('user does not exist');
+        this.toastr.error('user does not exist');
         this.email = '';
         this.password = '';
         return;
@@ -54,16 +56,17 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('email', this.email);
             localStorage.setItem('role', this.role);
             localStorage.setItem('userId', this.id);
+            this.toastr.success("Log In SuccessFull")
             this.router.navigate(['/' + this.role]);
             return
           } else {
-            alert('Your Account is Disabled by admin');
+            this.toastr.warning('Your Account is Disabled by admin');
             this.email = '';
             this.password = '';
             return
           }
         } else {
-          alert('Wrong Password');
+          this.toastr.error('Wrong Password');
           this.email = '';
           this.password = '';
           return

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
@@ -10,6 +11,8 @@ import { DataService } from 'src/app/shared/data.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  showResetPass:Boolean = false
 
 // to get and update user deatails
   userList :  User[] = [];
@@ -32,7 +35,12 @@ export class DashboardComponent implements OnInit {
   dob : string = '';
   role : string = '';
 
-  constructor(private auth : AuthService,private data : DataService,private router : Router){}
+  // for reseting password
+  currPass : string = '';
+  newPass : string = "";
+  confirmPass : string = '';
+
+  constructor(private auth : AuthService,private data : DataService,private router : Router,private toastr: ToastrService){}
 
   ngOnInit(): void{
     if(localStorage.getItem('token')==null){
@@ -53,14 +61,14 @@ export class DashboardComponent implements OnInit {
         return data;
        })
     }, err => {
-      alert(err.message)
+      this.toastr.error(err.message)
     })
   }
 
   // adding new user
   addUser(){
     if(this.first_name == '' || this.last_name == '' || this.email == '' || this.mobile == '' || this.dob == '' || this.role == ''){
-       alert('all fields are mandatory');
+      this.toastr.warning('all fields are mandatory');
        return;
     }
     
@@ -97,11 +105,7 @@ export class DashboardComponent implements OnInit {
   }
 
   freezUnFreeze(user : User, f : boolean){
-    if(f){
-      window.confirm('Are you sure you want to Enable ' + user.first_name + ' ' + user.last_name + ' ?')
-      this.data.freezUnFreeze(user,f)
-    }else{
-      window.confirm('Are you sure you want to Disable ' + user.first_name + ' ' + user.last_name + ' ?')
+    if(window.confirm('Are you sure you want to '+ (f ? "Enable " : "Disable ") + user.first_name + ' ' + user.last_name + ' ?')){
       this.data.freezUnFreeze(user,f)
     }
   }
@@ -109,5 +113,33 @@ export class DashboardComponent implements OnInit {
   //logout
   logout(){
     this.data.logout();
+  }
+
+  openCloseResetPass(){
+    this.showResetPass = !this.showResetPass
+  }
+
+  resetPass(){
+    if(this.currPass != "" && this.newPass != "" && this.confirmPass != ""){
+      if(this.confirmPass==this.newPass){
+        this.data.resetPass(JSON.stringify(localStorage.getItem('email') || ""),this.currPass,this.newPass)
+        this.showResetPass = false
+        this.currPass = '';
+        this.newPass = '';
+        this.confirmPass = '';
+      }else{
+        this.toastr.error("New Password and Confirm Password Do Not Match")
+        this.currPass = '';
+        this.newPass = '';
+        this.confirmPass = '';
+        return
+      }
+    }else{
+      this.toastr.warning("All fields are mandatory")
+      this.currPass = '';
+      this.newPass = '';
+      this.confirmPass = '';
+      return
+    }
   }
 }

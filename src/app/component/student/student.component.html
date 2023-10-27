@@ -1,4 +1,60 @@
 <div class="container-fluid">
+
+  <div class="w-screen h-screen absolute z-20 flex items-center justify-center bg-slate-400/[.5]" *ngIf="showResetPass">
+    
+    <div class="card border-0 shadow p-3 bg-white md:w-1/2">
+        <div class="form-floating mb-3 tetx-center">
+          <h5 class="text-center text-warning">Reset Password</h5>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="currPass"
+          />
+          <label for="lastName">Current Password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            [(ngModel)]="newPass"
+          />
+          <label for="email">New Password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="mobile"
+            name="mobile"
+            [(ngModel)]="confirmPass"
+          />
+          <label for="mobile">Confirm Password</label>
+        </div>
+        <button
+          type="button"
+          class="btn btn-outline-success mt-2"
+          (click)="resetPass()"
+        >
+          Reset Password
+        </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger mt-2"
+      (click)="openCloseResetPass()"
+    >
+      Close
+    </button>
+      </div>
+
+</div>
+
+
   <div class="row">
     <div class="col-md-4 mt-5">
       <div class="card border-0 shadow p-3">
@@ -28,6 +84,15 @@
           (click)="result()"
         >
           See Result
+        </button>
+
+        
+        <button
+          type="button"
+          class="btn btn-outline-success mt-2"
+          (click)="openCloseResetPass()"
+        >
+          Reset Password
         </button>
 
         <button
