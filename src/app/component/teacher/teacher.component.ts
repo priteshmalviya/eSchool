@@ -117,8 +117,8 @@ export class TeacherComponent {
   getAllUser(){
     this.data.getAllUsers().subscribe(res=>{
        this.usersList = res.map((e:any) =>{
-        const data = e.payload.doc.data();
-        data.id = e.payload.doc.id;
+        const data = e.payload.val();
+        //data.id = e.payload.doc.id;
         if(data.role=='student'){
           this.studentsList.push(data);
         }

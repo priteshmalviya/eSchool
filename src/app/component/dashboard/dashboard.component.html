@@ -1,77 +1,139 @@
 <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-md-4 mt-5">
-            <div class="card border-0 shadow p-3">
-                <div class="form-floating mb-3 tetx-center">
-                    <h5 class="text-center text-warning">Add User</h5>
-                </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="firstName" name="firstname" [(ngModel)]="first_name">
-                        <label for="firstname">First name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="last_name">
-                        <label for="lastName">Last name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" name="dob" [(ngModel)]="dob">
-                        <label for="dob">Date Of Birth</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
-                        <label for="email">Email address</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="mobile" name="mobile" [(ngModel)]="mobile">
-                        <label for="mobile">Mobile</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="role" [(ngModel)]="role">
-                        <label for="role">Role</label>
-                    </div>
-                    <button type="button" class="btn btn-outline-success" (click)="addUser()">Add User</button>
-                    <button type="button" class="btn btn-outline-danger mt-2" (click)="logout()">LogOut</button>
-            </div>
+  <div class="row">
+    <div class="col-md-4 mt-5">
+      <div class="card border-0 shadow p-3">
+        <div class="form-floating mb-3 tetx-center">
+          <h5 class="text-center text-warning">Add User</h5>
         </div>
-        <div class="col-md-8 mt-2">
-            <h2 class="text-danger text-center text-xl"> Users List</h2>
-            <div class="card p-3 shadow">
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
-                            <th scope="col">Dob</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Mobile</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let user of userList">
-                            <td>{{user.first_name}}</td>
-                            <td>{{user.last_name}}</td>
-                            <td>{{user.dob}}</td>
-                            <td>{{user.role}}</td>
-                            <td>{{user.email}}</td>
-                            <td>{{user.mobile}}</td>
-                            <td>
-                                <button  class="btn btn-outline-danger mr-3" *ngIf="user.status" (click)="freezUnFreeze(user,false)">Freez</button>
-
-                                
-                                <button  class="btn btn-outline-success mr-3" *ngIf="!user.status" (click)="freezUnFreeze(user,true)">UnFreez</button>
-
-                                <button class="btn btn-outline-danger" (click)="deleteUser(user)">Delete</button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                </div>
-            </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="firstname"
+            [(ngModel)]="first_name"
+          />
+          <label for="firstname">First name</label>
         </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="last_name"
+          />
+          <label for="lastName">Last name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="date"
+            class="form-control"
+            name="dob"
+            [(ngModel)]="dob"
+          />
+          <label for="dob">Date Of Birth</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+          />
+          <label for="email">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="mobile"
+            name="mobile"
+            [(ngModel)]="mobile"
+          />
+          <label for="mobile">Mobile</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="role"
+            [(ngModel)]="role"
+          />
+          <label for="role">Role</label>
+        </div>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="addUser()"
+        >
+          Add User
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger mt-2"
+          (click)="logout()"
+        >
+          LogOut
+        </button>
+      </div>
     </div>
+    <div class="col-md-8 mt-2">
+      <h2 class="text-danger text-center text-xl">Users List</h2>
+      <div class="card p-3 shadow">
+        <div class="card-body">
+          <div class="h-5/6 overflow-auto">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">First name</th>
+                  <th scope="col">Last name</th>
+                  <th scope="col">Dob</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Mobile</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of userList">
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.last_name }}</td>
+                  <td>{{ user.dob }}</td>
+                  <td>{{ user.role }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.mobile }}</td>
+                  <td>
+                    <button
+                      class="btn btn-outline-danger mr-3"
+                      *ngIf="user.status"
+                      (click)="freezUnFreeze(user, false)"
+                    >
+                      Disable
+                    </button>
 
+                    <button
+                      class="btn btn-outline-success mr-3"
+                      *ngIf="!user.status"
+                      (click)="freezUnFreeze(user, true)"
+                    >
+                      Enable
+                    </button>
+
+                    <button
+                      class="btn btn-outline-danger"
+                      (click)="deleteUser(user)"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
