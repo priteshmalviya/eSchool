@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/' + this.role]);
             return
           } else {
-            alert('Your Account is Freezed by admin');
+            alert('Your Account is Disabled by admin');
             this.email = '';
             this.password = '';
             return

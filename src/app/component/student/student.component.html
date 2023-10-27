@@ -1,103 +1,136 @@
 <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-md-4 mt-5">
-            <div class="card border-0 shadow p-3">
-                <div class="form-floating mb-3 tetx-center">
-                    <h5 class="text-center text-warning">Student Section</h5>
-                </div>
-                
-                <button type="button" class="btn btn-outline-success mt-2" (click)="attendance()">See Attendance</button>
-                
-                <button type="button" class="btn btn-outline-success mt-2" (click)="assignment()">See Assignment</button>
-                
-                <button type="button" class="btn btn-outline-success mt-2" (click)="result()">See Result</button>
-
-                <button type="button" class="btn btn-outline-danger mt-2" (click)="logout()">LogOut</button>
-            </div>
+  <div class="row">
+    <div class="col-md-4 mt-5">
+      <div class="card border-0 shadow p-3">
+        <div class="form-floating mb-3 tetx-center">
+          <h5 class="text-center text-warning">Student Section</h5>
         </div>
-        <div class="col-md-8 mt-5">
-            <div class="card p-3 shadow">
-                
-                <div class="card-body" *ngIf="showAssignment">
-                    <h2 class="text-danger text-center text-xl">Assignments List</h2>
 
-                    
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Subject</th>
-                            <th scope="col">Last Date <button type="button"  class="btn px-2 py-0 btn-outline-success" (click)="filterAssignment()"><p *ngIf="sortAssignmentInAscending" class="text-lg">&uarr;</p><p *ngIf="sortAssignmentInDescending" class="text-lg">&#8595;</p></button></th>
-                            <th scope="col">Marks</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let assignment of assignmentList">
-                            <td>{{assignment.name}}</td>
-                            <td>{{assignment.subject}}</td>
-                            <td>{{assignment.date}}</td>
-                            <td>{{assignment.marks}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+        <button
+          type="button"
+          class="btn btn-outline-success mt-2"
+          (click)="attendance()"
+        >
+          See Attendance
+        </button>
 
-                </div>
+        <button
+          type="button"
+          class="btn btn-outline-success mt-2"
+          (click)="assignment()"
+        >
+          See Assignment
+        </button>
 
-                
-                <div class="card-body" *ngIf="showAttendance">
-                    <h2 class="text-danger text-center text-xl">Attendance</h2>
+        <button
+          type="button"
+          class="btn btn-outline-success mt-2"
+          (click)="result()"
+        >
+          See Result
+        </button>
 
-                    
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Month</th>
-                            <th scope="col">Attendance</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let attendance of attendanceList">
-                            <td>{{attendance.name}}</td>
-                            <td>{{attendance.email}}</td>
-                            <td>{{attendance.month}}</td>
-                            <td>{{attendance.attendance}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                </div>
-
-                <div class="card-body" *ngIf="showResult">
-                    <h2 class="text-danger text-center text-xl">Result</h2>
-
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">Name Of Exam</th>
-                            <th scope="col">Subject</th>
-                            <th scope="col">Email of Student</th>
-                            <th scope="col">Obtained Marks</th>
-                            <th scope="col">Total Marks</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let result of ResultList">
-                            <td>{{result.exam}}</td>
-                            <td>{{result.subject}}</td>
-                            <td>{{result.email}}</td>
-                            <td>{{result.obtained}}</td>
-                            <td>{{result.total}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                </div>
-
-            </div>
-        </div>
+        <button
+          type="button"
+          class="btn btn-outline-danger mt-2"
+          (click)="logout()"
+        >
+          LogOut
+        </button>
+      </div>
     </div>
+    <div class="col-md-8 mt-5">
+      <div class="card p-3 shadow">
+        <div class="card-body" *ngIf="showAssignment">
+          <h2 class="text-danger text-center text-xl">Assignments List</h2>
 
+          <div class="h-5/6 overflow-auto">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Subject</th>
+                  <th scope="col">
+                    Last Date
+                    <button
+                      type="button"
+                      class="btn px-2 py-0 btn-outline-success"
+                      (click)="filterAssignment()"
+                    >
+                      <p *ngIf="sortAssignmentInAscending" class="text-lg">
+                        &uarr;
+                      </p>
+                      <p *ngIf="sortAssignmentInDescending" class="text-lg">
+                        &#8595;
+                      </p>
+                    </button>
+                  </th>
+                  <th scope="col">Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let assignment of assignmentList">
+                  <td>{{ assignment.name }}</td>
+                  <td>{{ assignment.subject }}</td>
+                  <td>{{ assignment.date }}</td>
+                  <td>{{ assignment.marks }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-body" *ngIf="showAttendance">
+          <h2 class="text-danger text-center text-xl">Attendance</h2>
+
+          <div class="h-5/6 overflow-auto">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Month</th>
+                  <th scope="col">Attendance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let attendance of attendanceList">
+                  <td>{{ attendance.name }}</td>
+                  <td>{{ attendance.email }}</td>
+                  <td>{{ attendance.month }}</td>
+                  <td>{{ attendance.attendance }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-body" *ngIf="showResult">
+          <h2 class="text-danger text-center text-xl">Result</h2>
+          <div class="h-5/6 overflow-auto">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Name Of Exam</th>
+                  <th scope="col">Subject</th>
+                  <th scope="col">Email of Student</th>
+                  <th scope="col">Obtained Marks</th>
+                  <th scope="col">Total Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let result of ResultList">
+                  <td>{{ result.exam }}</td>
+                  <td>{{ result.subject }}</td>
+                  <td>{{ result.email }}</td>
+                  <td>{{ result.obtained }}</td>
+                  <td>{{ result.total }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -98,10 +98,10 @@ export class DashboardComponent implements OnInit {
 
   freezUnFreeze(user : User, f : boolean){
     if(f){
-      window.confirm('Are you sure you want to UnFreeze ' + user.first_name + ' ' + user.last_name + ' ?')
+      window.confirm('Are you sure you want to Enable ' + user.first_name + ' ' + user.last_name + ' ?')
       this.data.freezUnFreeze(user,f)
     }else{
-      window.confirm('Are you sure you want to Freeze ' + user.first_name + ' ' + user.last_name + ' ?')
+      window.confirm('Are you sure you want to Disable ' + user.first_name + ' ' + user.last_name + ' ?')
       this.data.freezUnFreeze(user,f)
     }
   }
