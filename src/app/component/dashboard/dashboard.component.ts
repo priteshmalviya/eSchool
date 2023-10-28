@@ -104,6 +104,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  
+  // Enabling  and disbling user login
   freezUnFreeze(user : User, f : boolean){
     if(window.confirm('Are you sure you want to '+ (f ? "Enable " : "Disable ") + user.first_name + ' ' + user.last_name + ' ?')){
       this.data.freezUnFreeze(user,f)
@@ -115,10 +117,14 @@ export class DashboardComponent implements OnInit {
     this.data.logout();
   }
 
+  
+  // showing and hiding password reset form 
   openCloseResetPass(){
     this.showResetPass = !this.showResetPass
   }
 
+  
+  // reseting the user password
   resetPass(){
     if(this.currPass != "" && this.newPass != "" && this.confirmPass != ""){
       if(this.confirmPass==this.newPass){

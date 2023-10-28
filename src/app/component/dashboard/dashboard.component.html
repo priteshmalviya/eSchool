@@ -1,5 +1,8 @@
 <div class="container-fluid">
 
+  
+  <!-- form for reseting password start here-->
+
     <div class="w-screen h-screen absolute z-20 flex items-center justify-center bg-slate-400/[.5]" *ngIf="showResetPass">
     
         <div class="card border-0 shadow p-3 bg-white md:w-1/2">
@@ -54,9 +57,15 @@
 
     </div>
 
+    
+  <!-- form for reseting password ends here-->
 
   <div class="row">
     <div class="col-md-4 mt-5">
+
+      
+  <!-- form for adding new user start here-->
+
       <div class="card border-0 shadow p-3">
         <div class="form-floating mb-3 tetx-center">
           <h5 class="text-center text-warning">Add User</h5>
@@ -141,13 +150,21 @@
           LogOut
         </button>
       </div>
+
+      
+  <!-- form for adding new user ends here-->
+
     </div>
+
+    
+  <!-- user list section starts here-->
+
     <div class="col-md-8 mt-2">
       <h2 class="text-danger text-center text-xl">Users List</h2>
       <div class="card p-3 shadow">
         <div class="card-body">
           <div class="h-5/6 overflow-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">First name</th>
@@ -198,5 +215,10 @@
         </div>
       </div>
     </div>
+
+    
+  <!-- user list section ends here-->
+
+  
   </div>
 </div>

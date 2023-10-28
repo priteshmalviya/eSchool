@@ -305,10 +305,14 @@ export class TeacherComponent {
     })
   }
 
+  // show and hide reset password form
+
   openCloseResetPass(){
     this.showResetPass = !this.showResetPass
   }
 
+
+  // for reseting user's password
   resetPass(){
     if(this.currPass != "" && this.newPass != "" && this.confirmPass != ""){
       if(this.confirmPass==this.newPass){

@@ -1,4 +1,8 @@
 <div class="container-fluid">
+  
+  <!-- form for reseting password start here-->
+
+
   <div
     class="w-screen h-screen absolute z-20 flex items-center justify-center bg-slate-400/[.5]"
     *ngIf="showResetPass"
@@ -54,8 +58,16 @@
     </div>
   </div>
 
+  <!-- form for reseting password end here-->
+
+
   <div class="row">
     <div class="col-md-4 mt-3">
+
+      
+      <!-- user's options section start here -->
+
+
       <div class="card border-0 shadow p-3">
         <div class="form-floating mb-3 tetx-center">
           <h5 class="text-center text-warning">teacher Section</h5>
@@ -109,9 +121,18 @@
           LogOut
         </button>
       </div>
+      
+      <!-- user's options section end here -->
+
+
     </div>
     <div class="col-md-8 mt-3">
       <div class="card p-3 shadow">
+        
+        
+      <!-- attendance form section start here -->
+
+
         <div class="card-body" *ngIf="showAttendance">
           <h2 class="text-danger text-center text-xl">Attendance</h2>
 
@@ -163,11 +184,17 @@
           </button>
         </div>
 
+        
+      <!-- attendance form section end here -->
+
+      <!-- attendance list section start here -->
+
+
         <div class="card-body" *ngIf="showAttendance">
           <h2 class="text-danger text-center text-xl">Attendance List</h2>
 
           <div class="max-h-48 overflow-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -187,6 +214,13 @@
             </table>
           </div>
         </div>
+        
+        
+      <!-- attendance list section end here -->
+
+      
+      <!-- result form section start here -->
+
 
         <div class="card-body" *ngIf="showResult">
           <h2 class="text-danger text-center text-xl">Result</h2>
@@ -249,11 +283,19 @@
           </button>
         </div>
 
+        
+        
+      <!-- result form section end here -->
+
+      
+      <!-- result list section start here -->
+
+
         <div class="card-body" *ngIf="showResult">
           <h2 class="text-danger text-center text-xl">Result List</h2>
 
           <div class="max-h-36 overflow-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">Name Of Exam</th>
@@ -275,6 +317,13 @@
             </table>
           </div>
         </div>
+
+        
+        
+      <!-- result list section end here -->
+      
+      <!-- assignment form section start here -->
+
 
         <div class="card-body" *ngIf="showAssignment">
           <h2 class="text-danger text-center text-xl">Assignment</h2>
@@ -327,11 +376,18 @@
           </button>
         </div>
 
+        
+      <!-- assignment form section end here -->
+
+      
+      <!-- assignment list section start here -->
+
+
         <div class="card-body" *ngIf="showAssignment">
           <h2 class="text-danger text-center text-xl">Assignments List</h2>
 
           <div class="max-h-48 overflow-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -374,12 +430,18 @@
             </table>
           </div>
         </div>
+        
+        <!-- assignment list section end here -->
+  
+        
+        <!-- student list section start here -->
+  
 
         <div class="card-body" *ngIf="showStudents">
           <h2 class="text-danger text-center text-xl">Students List</h2>
 
           <div class="h-5/6 overflow-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">
@@ -413,6 +475,9 @@
             </table>
           </div>
         </div>
+        
+        <!-- student list section end here -->
+
       </div>
     </div>
   </div>

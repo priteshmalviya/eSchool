@@ -143,10 +143,15 @@ export class StudentComponent {
     this.data.logout();
   }
 
+
+  
+  // show and hide reset password form
   openCloseResetPass() {
     this.showResetPass = !this.showResetPass;
   }
 
+  
+  // reseting password of user
   resetPass() {
     if (this.currPass != '' && this.newPass != '' && this.confirmPass != '') {
       if (this.confirmPass == this.newPass) {

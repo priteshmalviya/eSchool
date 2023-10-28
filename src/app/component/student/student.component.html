@@ -1,5 +1,8 @@
 <div class="container-fluid">
 
+  
+  <!-- form for reseting password start here-->
+
   <div class="w-screen h-screen absolute z-20 flex items-center justify-center bg-slate-400/[.5]" *ngIf="showResetPass">
     
     <div class="card border-0 shadow p-3 bg-white md:w-1/2">
@@ -55,8 +58,15 @@
 </div>
 
 
+  <!-- form for reseting password ends here-->
+
+
   <div class="row">
     <div class="col-md-4 mt-5">
+
+
+      <!-- user's options section start here -->
+
       <div class="card border-0 shadow p-3">
         <div class="form-floating mb-3 tetx-center">
           <h5 class="text-center text-warning">Student Section</h5>
@@ -83,7 +93,7 @@
           class="btn btn-outline-success mt-2"
           (click)="result()"
         >
-          See Result
+          See Test Result
         </button>
 
         
@@ -103,14 +113,23 @@
           LogOut
         </button>
       </div>
+
+      
+      <!-- user's options section ends here -->
+
     </div>
     <div class="col-md-8 mt-5">
       <div class="card p-3 shadow">
+
+        
+        
+      <!-- Assignment section start here -->
+
         <div class="card-body" *ngIf="showAssignment">
           <h2 class="text-danger text-center text-xl">Assignments List</h2>
 
           <div class="h-5/6 overflow-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -145,11 +164,16 @@
           </div>
         </div>
 
+        
+      <!-- Assignment section end here -->
+      
+      <!--attenance section start here -->
+
         <div class="card-body" *ngIf="showAttendance">
           <h2 class="text-danger text-center text-xl">Attendance</h2>
 
           <div class="h-5/6 overflow-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -170,10 +194,15 @@
           </div>
         </div>
 
+      
+      <!-- attenance section end here -->
+      <!-- result section  start here -->
+
+
         <div class="card-body" *ngIf="showResult">
           <h2 class="text-danger text-center text-xl">Result</h2>
           <div class="h-5/6 overflow-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">Name Of Exam</th>
@@ -195,6 +224,9 @@
             </table>
           </div>
         </div>
+        
+      <!-- result section  end here -->
+
       </div>
     </div>
   </div>
